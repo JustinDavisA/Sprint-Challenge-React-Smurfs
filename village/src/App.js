@@ -30,28 +30,32 @@ class App extends Component {
       });
   }
 
-  addSmurf = (e, smurf) => {
-    e.peventDefault();
-    axios
-      .post('http://localhost:3333/smurfs', smurf)
-      .then(res => {
-        this.setState({
-          smurfs: res.data
-        });
-        this.props.history.push('/smurf-list')
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
+  // addSmurf = (e, smurf) => {
+  //   e.peventDefault();
+  //   axios
+  //     .post('http://localhost:3333/smurfs', smurf)
+  //     .then(res => {
+  //       this.setState({
+  //         smurfs: res.data
+  //       });
+  //       this.props.history.push('/smurf-list')
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }
 
   render() {
     return (
       <div className="App">
-        {/* <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} /> */}
+
+        <div className='nav'>
+          <NavLink to = '/smurf-form'>Add Smurf</NavLink>
+          <NavLink to = '/'>Home</NavLink>
+        </div>
+
         <Route 
-          path = '/'
+          path = '/smurf-form'
           render = {props => (
             <SmurfForm
               {...props}
