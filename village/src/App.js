@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Route,
-  withRouter
-} from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 
 import './App.css';
 import SmurfForm from './components/SmurfForm';
@@ -22,10 +15,7 @@ class App extends Component {
       error: ''
     };
   }
-  // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
-  // Notice what your map function is looping over and returning inside of Smurfs.
-  // You'll need to make sure you have the right properties on state and pass them down to props.
-
+  
   componentDidMount() {
     console.log('CDM now running');
     axios
@@ -61,17 +51,21 @@ class App extends Component {
         {/* <SmurfForm />
         <Smurfs smurfs={this.state.smurfs} /> */}
         <Route 
-          path = '/smurf-form'
+          path = '/'
           render = {props => (
             <SmurfForm
               {...props}
-              activeSmurf = {this.state.activeSmurf}
-              addSmurf = {this.addSmurf}
             />
           )}
         />
         <Route 
-        
+          exact path = '/'
+          render = {props => (
+            <Smurfs
+              {...props}
+              smurfs = {this.state.smurfs}
+            />
+          )}
         />
       </div>
     );
